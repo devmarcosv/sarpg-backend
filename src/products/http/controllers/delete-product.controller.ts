@@ -1,29 +1,24 @@
 import { Request, Response } from 'express'
 import { z } from 'zod'
-import { CreateProductUseCase } from '@/products/application/usecases/create-product.usecase'
 import { container } from 'tsyringe'
 import { dataValidation } from '@/common/infrastructure/validation/zod'
+import { DeleteProductUseCase } from '@/products/application/usecases/delete-product.usecase'
 
-export async function createProductController(
+export async function deleteProductController(
   request: Request,
   response: Response,
 ) {
-  const createProductBodySchema = z.object({
-    name: z.string(),
-    price: z.number(),
-    quantity: z.number(),
+  const deleteProductParamSchema = z.object({
+    id: z.string().uuid(),
   })
 
-  const { name, price, quantity } = dataValidation(
-    createProductBodySchema,
-    request.body,
+  const { id } = dataValidation(deleteProductParamSchema, request.params)
+
+  const deleteProductUseCase: DeleteProductUseCase.UseCase = container.resolve(
+    'DeleteProductUseCase',
   )
 
-  const createProductUseCase: CreateProductUseCase.UseCase = container.resolve(
-    'CreateProductUseCase',
-  )
+  await deleteProductUseCase.execute({ id })
 
-  const product = await createProductUseCase.execute({ name, price, quantity })
-
-  return response.status(201).json(product)
+  return response.status(204).send()
 }

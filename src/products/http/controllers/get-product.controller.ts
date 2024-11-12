@@ -1,29 +1,23 @@
 import { Request, Response } from 'express'
 import { z } from 'zod'
-import { CreateProductUseCase } from '@/products/application/usecases/create-product.usecase'
 import { container } from 'tsyringe'
+import { GetProductUseCase } from '@/products/application/usecases/get-product.usecase'
 import { dataValidation } from '@/common/infrastructure/validation/zod'
 
-export async function createProductController(
+export async function getProductController(
   request: Request,
   response: Response,
 ) {
-  const createProductBodySchema = z.object({
-    name: z.string(),
-    price: z.number(),
-    quantity: z.number(),
+  const getProductParamSchema = z.object({
+    id: z.string().uuid(),
   })
 
-  const { name, price, quantity } = dataValidation(
-    createProductBodySchema,
-    request.body,
-  )
+  const { id } = dataValidation(getProductParamSchema, request.params)
 
-  const createProductUseCase: CreateProductUseCase.UseCase = container.resolve(
-    'CreateProductUseCase',
-  )
+  const getProductUseCase: GetProductUseCase.UseCase =
+    container.resolve('GetProductUseCase')
 
-  const product = await createProductUseCase.execute({ name, price, quantity })
+  const product = await getProductUseCase.execute({ id })
 
-  return response.status(201).json(product)
+  return response.status(200).json(product)
 }
