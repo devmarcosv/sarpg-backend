@@ -7,7 +7,7 @@ import { dataValidation } from '@/common/infrastructure/validation/zod'
 export async function createProductController(
   request: Request,
   response: Response,
-) {
+): Promise<Response> {
   const createProductBodySchema = z.object({
     name: z.string(),
     price: z.number(),
