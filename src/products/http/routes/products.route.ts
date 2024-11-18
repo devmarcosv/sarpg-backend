@@ -160,4 +160,26 @@ import { deleteProductController } from '../controllers/delete-product.controlle
      */
     productsRouter.delete('/:id', deleteProductController)
 
+    
+  /**
+     * @swagger
+     *   get:
+     *     summary: Teste
+     *     tags: [Products]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         schema:
+     *           type: string
+     *         required: true
+     *         description: The product ID
+     *     responses:
+     *       204:
+     *         description: The product was successfully deleted
+     *       404:
+     *         description: The product was not found
+     */
+
+    productsRouter.get('/')
+
     export { productsRouter }
