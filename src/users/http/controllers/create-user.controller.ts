@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { z } from 'zod'
-import { CreateUserUsecase } from '@/users/usecases/create-user.usecase'
+import { CreateUserUseCase } from '@/users/usecases/create-user.usecase'
 import { container } from 'tsyringe'
 import { dataValidation } from '@/common/infrastructure/validation/zod'
 
@@ -18,11 +18,11 @@ export async function createUserController(
     request.body,
   )
 
-  const createUserUseCase: CreateUserUsecase.UseCase = container.resolve(
-    'CreateProductUseCase',
+  const createUserUseCase: CreateUserUseCase.UseCase = container.resolve(
+    'CreateUserUseCase',
   )
 
-  const user = await CreateUserUsecase.execute({ name, password })
+  const user = await CreateUserUseCase.execute({ name, password })
 
   return response.status(201).json(user)
 }
