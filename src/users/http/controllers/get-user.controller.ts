@@ -6,23 +6,17 @@ import { dataValidation } from '@/common/infrastructure/validation/zod'
 export async function getUserController(
   request: Request,
   response: Response,
-): Promise<Response> {
-  const createUserSchema = z.object({
-    name: z.string(),
-    password: z.string().length(8),
-    quantity: z.number(),
+) {
+  const getUserSchema = z.object({
+    id: z.string().uuid(),
   })
 
-  const { name, price, quantity } = dataValidation(
-    createUserSchema,
-    request.body,
-  )
+  const { id } = dataValidation(getUserSchema, request.params)
 
-  const createProductUseCase: CreateProductUseCase.UseCase = container.resolve(
-    'CreateProductUseCase',
-  )
+  const getProductUseCase: GetProductUseCase.UseCase =
+    container.resolve('GetProductUseCase')
 
-  const product = await createProductUseCase.execute({ name, price, quantity })
+  const product = await getProductUseCase.execute({ id })
 
-  return response.status(201).json(product)
+  return response.status(200).json(product)
 }

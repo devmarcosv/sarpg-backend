@@ -8,12 +8,12 @@ import { ProductModel } from '../models/users.model'
     export type CreateUserProps = {
     id?: string
     name: string
-    password: number
+    password: string
     created_at?: Date
     updated_at?: Date
     }
 
-    export interface ProductsRepository
+    export interface UsersRepository
     extends RepositoryInterface<ProductModel, CreateUserProps> {
     findByName(name: string): Promise<ProductModel>
     findAllByIds(productIds: UserId[]): Promise<ProductModel[]>
