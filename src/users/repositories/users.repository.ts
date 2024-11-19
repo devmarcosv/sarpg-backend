@@ -1,5 +1,5 @@
 import { RepositoryInterface } from '@/common/domain/repositories/repository.interface'
-import { ProductModel } from '../models/users.model'
+import { UserModel } from '../models/users.model'
 
     export type UserId = {
     id: string
@@ -14,8 +14,8 @@ import { ProductModel } from '../models/users.model'
     }
 
     export interface UsersRepository
-    extends RepositoryInterface<ProductModel, CreateUserProps> {
-    findByName(name: string): Promise<ProductModel>
-    findAllByIds(productIds: UserId[]): Promise<ProductModel[]>
+    extends RepositoryInterface<UserModel, CreateUserProps> {
+    findByName(name: string): Promise<UserModel>
+    findAllByIds(productIds: UserId[]): Promise<UserModel[]>
     conflictingName(name: string): Promise<void>
 }
