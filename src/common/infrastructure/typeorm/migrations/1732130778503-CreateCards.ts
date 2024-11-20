@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateCard1732046232136 implements MigrationInterface {
+export class CreateCards1732046232136 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
