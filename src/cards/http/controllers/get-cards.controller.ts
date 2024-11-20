@@ -7,16 +7,11 @@ export async function getCardsController(
   request: Request,
   response: Response,
 ) {
-  const getUserSchema = z.object({
+  const getCardSchema = z.object({
     id: z.string().uuid(),
   })
 
-  const { id } = dataValidation(getCardsSchema, request.params)
+  const { id } = dataValidation(getCardSchema, request.params)
 
-  const getProductUseCase: GetProductUseCase.UseCase =
-    container.resolve('GetProductUseCase')
-
-  const product = await getProductUseCase.execute({ id })
-
-  return response.status(200).json(product)
+  return response.status(200).json(id)
 }

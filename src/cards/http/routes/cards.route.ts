@@ -119,5 +119,28 @@ import { Router } from 'express'
      *       404:
      *         description: User not found
      */
+    cardsRouter.put('/:id', updateCardController)
+
+    /**
+     * @swagger
+     * /cards/{id}:
+     *   delete:
+     *     summary: Delete a card by ID
+     *     tags: [Cards]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         schema:
+     *           type: string
+     *         required: true
+     *         description: The card ID
+     *     responses:
+     *       204:
+     *         description: The card was successfully deleted
+     *       404:
+     *         description: The card was not found
+     */
+
+    cardsRouter.delete('/:id', deleteCardController)
 
     export { usersRouter }
