@@ -1,8 +1,7 @@
 import { Request, Response } from 'express'
 import { z } from 'zod'
-import { CreateUserUseCase } from '@/users/usecases/create-user.usecase'
-import { container } from 'tsyringe'
 import { dataValidation } from '@/common/infrastructure/validation/zod'
+import CreateUserService from '@/users/services/CreateUserService'
 
 export async function createUserController(
   request: Request,
@@ -18,11 +17,9 @@ export async function createUserController(
     request.body,
   )
 
-  const createUserUseCase: CreateUserUseCase.UseCase = container.resolve(
-    'CreateUserUseCase',
-  )
+  const user = new CreateUserService()
 
-  const user = await CreateUserUseCase.execute({ name, password })
+
 
   return response.status(201).json(user)
 }

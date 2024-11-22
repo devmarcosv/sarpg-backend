@@ -12,10 +12,10 @@ export class User implements UserModel {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column('varchar')
+  @Column()
   name: string
 
-  @Column('varchar')
+  @Column()
   password: string
 
   @CreateDateColumn({ name: 'created_at' })

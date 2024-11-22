@@ -1,21 +1,31 @@
-import { RepositoryInterface } from '@/common/domain/repositories/repository.interface'
-import { UserModel } from '../models/users.model'
+import { dataSource } from "@/common/infrastructure/typeorm";
+import { Repository } from "typeorm";
+import { User } from "../typeorm/entities/user.entity";
 
-    export type UserId = {
-    id: string
-    }
+export class UsersRepository {
+  private repository: Repository<User>
 
-    export type CreateUserProps = {
-    id?: string
-    name: string
-    password: string
-    created_at?: Date
-    updated_at?: Date
-    }
+  constructor() {
+    this.repository = dataSource.getRepository(User)
+  }
 
-    export interface UsersRepository
-    extends RepositoryInterface<UserModel, CreateUserProps> {
-    findByName(name: string): Promise<UserModel>
-    findAllByIds(productIds: UserId[]): Promise<UserModel[]>
-    conflictingName(name: string): Promise<void>
+  async create(data: Partial<User>): Promise<User> {
+    const user = this.repository.create(data);
+
+    return await this.repository.save(user);
+  }
+
+  async index(): Promise<User[]> {
+    return await this.repository.find();
+  }
+
+  async findById(id?: string): Promise<User | null> {
+    return this.repository.findOneBy({ id });
+  }
+
+  async update(id: string, data: Partial<User>): Promise<User | null> {
+    await this.repository.update(id, data);
+
+    return await this.repository.findOneBy({id})
+  }
 }
