@@ -17,5 +17,5 @@ export async function getUserController(
       paginate === 'true' // Converte para booleano
   );
 
-  return res.json(result);
+  return response.json(result);
 }
