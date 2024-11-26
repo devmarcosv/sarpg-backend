@@ -33,6 +33,7 @@ export class CreateUsers1731694537747 implements MigrationInterface {
                         length: '255',
                         isNullable: true,
                       },
+                  
                 ]
             })
         )

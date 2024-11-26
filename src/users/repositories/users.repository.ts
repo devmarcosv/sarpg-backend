@@ -12,12 +12,25 @@ export class UsersRepository {
   async create(data: Partial<User>): Promise<User> {
     const user = this.repository.create(data);
 
-    return await this.repository.save(user);
+    const savedUser = await this.repository.save(user);
+
+    return savedUser
   }
 
-  async index(): Promise<User[]> {
-    return await this.repository.find();
-  }
+  // Método para buscar usuários paginados
+  public async index(page: number, limit: number): Promise<{ users: User[]; total: number }> {
+    const [users, total] = await this.repository.findAndCount({
+        skip: (page - 1) * limit,
+        take: limit,
+    });
+
+    return { users, total };
+}
+
+// Método para buscar todos os usuários
+public async findAll(): Promise<User[]> {
+    return this.repository.find();
+}
 
   async findById(id?: string): Promise<User | null> {
     return this.repository.findOneBy({ id });

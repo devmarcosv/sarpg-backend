@@ -93,6 +93,6 @@ import { getUserController } from '../controllers/get-user.controller'
      *       404:
      *         description: User not found
      */
-    usersRouter.get('/:id', getUserController)
+    usersRouter.get('/', getUserController)
 
     export { usersRouter }

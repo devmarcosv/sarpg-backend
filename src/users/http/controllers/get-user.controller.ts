@@ -1,22 +1,21 @@
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
-import { dataValidation } from '@/common/infrastructure/validation/zod'
+import ListUserService from '@/users/services/ListUserService'
+import { instanceToInstance } from 'class-transformer'
 
 export async function getUserController(
   request: Request,
   response: Response,
-) {
-  const getUserSchema = z.object({
-    id: z.string().uuid(),
-  })
+): Promise<Response> {
+  const { page = 1, limit = 10, paginate = 'false' } = request.query;
 
-  const { id } = dataValidation(getUserSchema, request.params)
+  const listUserService = new ListUserService();
+  const result = await listUserService.execute(
+      Number(page),
+      Number(limit),
+      paginate === 'true' // Converte para booleano
+  );
 
-  const getProductUseCase: GetProductUseCase.UseCase =
-    container.resolve('GetProductUseCase')
-
-  const product = await getProductUseCase.execute({ id })
-
-  return response.status(200).json(product)
+  return res.json(result);
 }

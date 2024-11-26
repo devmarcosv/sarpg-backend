@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { productsRouter } from '@/products/http/routes/products.route'
 import { Router } from 'express'
+import { usersRouter } from '@/users/http/routes/users.route';
 
   const routes = Router()
 
@@ -9,5 +10,7 @@ import { Router } from 'express'
   })
 
   routes.use('/products', productsRouter)
+  routes.use('/users', usersRouter)
+
 
   export { routes }

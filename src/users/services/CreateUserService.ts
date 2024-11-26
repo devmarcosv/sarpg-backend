@@ -1,25 +1,26 @@
 import { hash } from 'bcryptjs';
 import { UsersRepository } from '../repositories/users.repository';
+import { User } from '../typeorm/entities/user.entity';
+import { dataSource } from '@/common/infrastructure/typeorm';
 
 interface IRequest {
   name: string;
-  email: string;
   password: string;
 }
 
 class CreateUserService {
+  private repository;
+
+  constructor() {
+    this.repository = new UsersRepository()
+  }
+
   public async execute({ name, password }: IRequest): Promise<User> {
-    let repository: UsersRepository
  
     const hashedPassword = await hash(password, 8);
+    const obj = { name, password: hashedPassword}
 
-    const user = repository.create({
-      name,
-      password: hashedPassword,
-    });
-
-    await usersRepository.save(user);
-
+    const user =  await this.repository.create(obj);
     return user;
   }
 }
