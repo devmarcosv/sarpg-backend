@@ -33,12 +33,17 @@ public async findAll(): Promise<User[]> {
 }
 
   async findById(id?: string): Promise<User | null> {
-    return this.repository.findOneBy({ id });
+    return await this.repository.findOneBy({ id });
   }
 
-  async update(id: string, data: Partial<User>): Promise<User | null> {
-    await this.repository.update(id, data);
+  async update(id: string, data: string): Promise<User | null> {
+    const user = await this.repository.findOneBy({id})
 
-    return await this.repository.findOneBy({id})
+    user.name = data
+
+    await this.repository.save(user)
+
+    return user
+
   }
 }

@@ -22,10 +22,8 @@ export async function createUserController(
 
   const service = new CreateUserService();
 
-  const user = service.execute({ name, password})
-  console.log(user)
+  const user = await service.execute({ name, password})
 
 
-
-  return response.status(201).json(instanceToInstance(user))
+  return response.status(201).json(user.id)
 }

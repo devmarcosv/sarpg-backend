@@ -1,5 +1,6 @@
 import { User } from '../typeorm/entities/user.entity';
 import { UsersRepository } from '../repositories/users.repository';
+import { response } from 'express';
 
 interface IPaginatedResponse {
     users: User[];
@@ -37,6 +38,13 @@ class ListUserService {
 
         return await this.repository.findAll();
     }
+
+    public async findById(id: string): Promise<User> {
+        const user = await this.repository.findById(id)
+
+        return user
+    }
+   
     }
 
 
