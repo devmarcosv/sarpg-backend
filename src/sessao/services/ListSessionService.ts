@@ -1,7 +1,6 @@
-import { User } from '../typeorm/entities/user.entity';
-import { UsersRepository } from '../repositories/users.repository';
 import { response } from 'express';
 import { Session } from '../typeorm/entities/session.entity';
+import { SessionsRepository } from '../typeorm/repository/sessions.repository';
 
 interface IPaginatedResponse {
     sessions: Session[];
@@ -16,7 +15,7 @@ class ListSessionService {
     private repository;
 
     constructor() {
-        this.repository = new UsersRepository()
+        this.repository = new SessionsRepository()
     }
     public async execute(page: number, limit: number, paginate: boolean): Promise<IPaginatedResponse[] | Session[]> {
 

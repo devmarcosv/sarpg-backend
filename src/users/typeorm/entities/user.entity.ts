@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -26,6 +27,7 @@ export class User implements UserModel {
   @UpdateDateColumn({ name: 'updated_at' })
   updated_at: Date
 
-  @OneToMany(() => Session, (sessao) => sessao.mestre, { cascade: true })
-  sessions: Session[];
+  @OneToMany(() => Session, (sessao) => sessao.id, { cascade: true })
+  @JoinColumn({ name: 'id' }) // Certifique-se do nome correto
+  sessions: Session;
 }

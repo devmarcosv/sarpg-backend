@@ -3,6 +3,7 @@ import { productsRouter } from '@/products/http/routes/products.route'
 import { Router } from 'express'
 import { usersRouter } from '@/users/http/routes/users.route';
 import { sessionRouter } from '@/sessao/http/routes/sessions.route';
+import { cardsRouter } from '@/cards/http/routes/cards.route';
 
   const routes = Router()
 
@@ -14,6 +15,8 @@ import { sessionRouter } from '@/sessao/http/routes/sessions.route';
   routes.use('/users', usersRouter)
   routes.use('/sessions', sessionRouter)
   routes.use('/personagem', usersRouter)
+  routes.use('/ficha', cardsRouter)
+
 
 
 
