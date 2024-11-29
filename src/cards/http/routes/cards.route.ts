@@ -5,8 +5,8 @@ import { getCardsController } from '../controllers/get-cards.controller'
     const cardsRouter = Router()
 
    
-    cardsRouter.post('/:id', createCardController)
+    cardsRouter.post('/', createCardController)
 
-    cardsRouter.get('/:id', getCardsController)
+    cardsRouter.get('/', getCardsController)
 
     export { cardsRouter }

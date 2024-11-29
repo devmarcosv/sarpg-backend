@@ -1,4 +1,5 @@
-import { SessionModel } from '@/sessao/models/sessions.model'
+import { Character } from '@/characters/typeorm/entities/character.entity';
+import { SessionModel } from '@/sessions/models/sessions.model'
 import { User } from '@/users/typeorm/entities/user.entity';
 import {
   Column,
@@ -6,6 +7,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
@@ -30,4 +32,8 @@ export class Session implements SessionModel {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updated_at: Date
+
+  @OneToMany(() => Character , (character) => character.id, { cascade: true })
+  @JoinColumn({ name: 'id' }) // Certifique-se do nome correto
+  characters: Character;
 }

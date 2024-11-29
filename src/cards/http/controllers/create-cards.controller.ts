@@ -8,7 +8,7 @@ export async function createCardController(
   response: Response,
 ): Promise<Response> {
   const createCardSchema = z.object({
-    name: z.string(),
+    nome: z.string(),
     raca: z.string(),
     classe: z.string(),
     nivel: z.number(),

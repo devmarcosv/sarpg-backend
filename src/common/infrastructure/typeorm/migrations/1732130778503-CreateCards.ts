@@ -9,11 +9,10 @@ export class CreateCards1732046232136 implements MigrationInterface {
                 name: 'cards',
                 columns: [
                     {
-                        name: 'nome', 
-                        type: 'uuid',
-                        isPrimary: true,
-                        generationStrategy: 'uuid',
-                        default: 'uuid_generate_v4()'
+                      name: 'name',
+                      type: 'varchar',
+                      length: '255',
+                      isNullable: false,
                     },
                     {
                         name: 'raca',

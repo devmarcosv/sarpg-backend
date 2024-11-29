@@ -1,5 +1,5 @@
 import { dataValidation } from "@/common/infrastructure/validation/zod";
-import CreateSessionService from "@/sessao/services/CreateSessionService";
+import CreateSessionService from "@/sessions/services/CreateSessionService";
 import { string, z } from "zod";
 
 export async function createSessionController(
