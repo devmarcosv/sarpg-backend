@@ -1,3 +1,4 @@
+import { CardModel } from '@/cards/models/cards.model'
 import { UserModel } from '@/users/models/users.model'
 import {
   Column,
@@ -8,7 +9,7 @@ import {
 } from 'typeorm'
 
 @Entity('cards')
-export class Card implements UserModel {
+export class Card implements CardModel {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
@@ -38,5 +39,11 @@ export class Card implements UserModel {
 
   @Column()
   danos: string
+
+  @CreateDateColumn({ name: 'created_at' })
+  created_at: Date
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updated_at: Date
 
 }
