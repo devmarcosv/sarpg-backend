@@ -11,6 +11,10 @@ import { usersRouter } from '@/users/http/routes/users.route';
 
   routes.use('/products', productsRouter)
   routes.use('/users', usersRouter)
+  routes.use('/sessions', usersRouter)
+  routes.use('/personagem', usersRouter)
+
+
 
 
   export { routes }
