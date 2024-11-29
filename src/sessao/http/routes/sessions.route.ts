@@ -4,7 +4,7 @@ import { getUserController } from '../controllers/get-user.controller'
 import { listUserController } from '../controllers/list-user.controller'
 import { updateUserController } from '../controllers/update-user.controller'
 
-    const usersRouter = Router()
+    const sessionRouter = Router()
 
     /**
      * @swagger
@@ -70,7 +70,7 @@ import { updateUserController } from '../controllers/update-user.controller'
      *       400:
      *         description: Bad request
      */
-    usersRouter.post('/', createSessionController)
+    sessionRouter.post('/', createSessionController)
 
     /**
      * @swagger
@@ -95,11 +95,9 @@ import { updateUserController } from '../controllers/update-user.controller'
      *       404:
      *         description: User not found
      */
-    usersRouter.get('/', listSessionController)
+    sessionRouter.get('/', listSessionController)
 
-    usersRouter.get('/:id', updateSessionController)
-    usersRouter.put('/:id', updateUserController)
-
+    sessionRouter.get('/:id', updateSessionController)
 
 
-    export { usersRouter }
+    export { sessionRouter }
