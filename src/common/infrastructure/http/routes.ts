@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { productsRouter } from '@/products/http/routes/products.route'
 import { Router } from 'express'
 import { usersRouter } from '@/users/http/routes/users.route';
+import { sessionRouter } from '@/sessao/http/routes/sessions.route';
 
   const routes = Router()
 
@@ -11,7 +12,7 @@ import { usersRouter } from '@/users/http/routes/users.route';
 
   routes.use('/products', productsRouter)
   routes.use('/users', usersRouter)
-  routes.use('/sessions', usersRouter)
+  routes.use('/sessions', sessionRouter)
   routes.use('/personagem', usersRouter)
 
 

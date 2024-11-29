@@ -1,8 +1,7 @@
 import { Router } from 'express'
-import { createUserController } from '../controllers/create-user.controller'
-import { getUserController } from '../controllers/get-user.controller'
-import { listUserController } from '../controllers/list-user.controller'
-import { updateUserController } from '../controllers/update-user.controller'
+import { createSessionController } from '../controllers/create-session.controller'
+import { listSessionController } from '../controllers/list-session.controller'
+
 
     const sessionRouter = Router()
 
@@ -97,7 +96,6 @@ import { updateUserController } from '../controllers/update-user.controller'
      */
     sessionRouter.get('/', listSessionController)
 
-    sessionRouter.get('/:id', updateSessionController)
 
 
     export { sessionRouter }
