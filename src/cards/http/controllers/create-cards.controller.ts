@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { z } from 'zod'
 import { dataValidation } from '@/common/infrastructure/validation/zod'
+import CreateCardService from '@/cards/services/CreateCardService'
 
 export async function createCardController(
   request: Request,
@@ -23,5 +24,9 @@ export async function createCardController(
     request.body,
   )
 
-  return response.status(201).json(payload)
+  const service = new CreateCardService()
+
+  const card = await service.execute(payload)
+
+  return response.status(201).json(card)
 }

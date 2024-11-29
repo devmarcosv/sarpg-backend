@@ -1,4 +1,5 @@
 import { dataValidation } from "@/common/infrastructure/validation/zod";
+import CreateSessionService from "@/sessao/services/CreateSessionService";
 import { string, z } from "zod";
 
 export async function createSessionController(
@@ -7,10 +8,13 @@ export async function createSessionController(
 ): Promise<Response> {
    const createSessionSchema = z.object({
     nome: z.string(),
-    mestre_id: z.string(),
-    data_inicio: z.date().optional(),
-    data_fim: z.date().optional()
+    user_id: z.string(),
    })
 
    const data = dataValidation(createSessionSchema, request.body)
+
+   const service = new CreateSessionService()
+   const user = await service.execute(data)
+
+   return response.status(201).json(user)
 }

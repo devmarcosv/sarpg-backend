@@ -1,5 +1,4 @@
 import { UserModel } from '@/users/models/users.model'
-import { Session } from '@/sessao/typeorm/entities/session.entity' 
 import {
   Column,
   CreateDateColumn,
@@ -27,7 +26,7 @@ export class User implements UserModel {
   @UpdateDateColumn({ name: 'updated_at' })
   updated_at: Date
 
-  @OneToMany(() => Session, (sessao) => sessao.id, { cascade: true })
-  @JoinColumn({ name: 'id' }) // Certifique-se do nome correto
-  sessions: Session;
+  // @OneToMany(() => Session, (sessao) => sessao.id, { cascade: true })
+  // @JoinColumn({ name: 'id' }) // Certifique-se do nome correto
+  // sessions: Session;
 }

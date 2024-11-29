@@ -16,20 +16,14 @@ export class Session implements SessionModel {
   id: string
 
   @ManyToOne(() => User, (usuario) => usuario.sessions, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'mestre_id' })
-  mestre: User;
+  @JoinColumn({ name: 'user_id' })
+  usuario: User;
 
   @Column()
-  mestre_id: string;
+  user_id: string;
 
   @Column()
   nome: string
-
-  @Column()
-  data_inicio: Date
-
-  @Column()
-  data_fim: Date
 
   @CreateDateColumn({ name: 'created_at' })
   created_at: Date
