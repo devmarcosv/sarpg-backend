@@ -1,6 +1,6 @@
 export interface CharacterModel {
     id: string
-    sessao_id: string
+    session_id: string
     nome: string
     classe: string
     raca: string

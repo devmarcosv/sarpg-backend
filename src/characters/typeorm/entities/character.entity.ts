@@ -17,11 +17,11 @@ export class Character implements CharacterModel {
   id: string
 
   @ManyToOne(() => Session, (session) => session.characters, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'sessao_id' })
+  @JoinColumn({ name: 'session_id' })
   session: Session
 
   @Column()
-  sessao_id: string
+  session_id: string
 
   @Column()
   nome: string

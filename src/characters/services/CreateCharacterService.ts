@@ -1,21 +1,23 @@
-import { hash } from 'bcryptjs';
-import { dataSource } from '@/common/infrastructure/typeorm';
-import { SessionsRepository } from '../typeorm/repository/sessions.repository';
-import { Session } from '../typeorm/entities/session.entity';
+
+import { CharacterRepository } from '../typeorm/repositories/character.repository';
+import { Character } from '../typeorm/entities/character.entity';
 
 interface IRequest {
-  name: string;
-  password: string;
-}
+  nome: string
+  session_id: string
+  raca: string
+  classe: string
+  pontos_de_vida: string
+ }
 
 class CreateCharacterService {
   private repository;
 
   constructor() {
-    this.repository = new SessionsRepository()
+    this.repository = new CharacterRepository()
   }
 
-  public async execute(data: IRequest): Promise<Session> {
+  public async execute(data: IRequest): Promise<Character> {
 
     const user =  await this.repository.create(data);
     return user;

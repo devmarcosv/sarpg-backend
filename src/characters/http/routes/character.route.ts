@@ -1,16 +1,14 @@
 import { Router } from 'express'
-import { createSessionController } from '../controllers/create-session.controller'
-import { listSessionController } from '../controllers/list-session.controller'
+import { createCharacterController } from '../controllers/create-character.controller'
+
 
 
     const charactersRouter = Router()
 
 
-    charactersRouter.post('/', createSessionController)
+    charactersRouter.post('/', createCharacterController)
 
    
-    charactersRouter.get('/', listSessionController)
-
 
 
     export { charactersRouter }

@@ -24,7 +24,7 @@ class ListSessionService {
             page = Number.isNaN(page) || page < 1 ? 1 : page;
             limit = Number.isNaN(limit) || limit < 1 ? 10 : limit;
 
-            const { users, total } = await this.repository.index(page, limit);
+            const { sessions, total } = await this.repository.index(page, limit);
 
             const totalPages = Math.ceil(total / limit);
 
