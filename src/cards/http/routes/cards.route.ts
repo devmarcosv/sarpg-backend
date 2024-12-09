@@ -1,12 +1,12 @@
 import { Router } from 'express'
 import { createCardController } from '../controllers/create-cards.controller'
-import { getCardsController } from '../controllers/get-cards.controller'
+import { getCardController } from '../controllers/get-cards.controller'
 
     const cardsRouter = Router()
 
    
     cardsRouter.post('/', createCardController)
 
-    cardsRouter.get('/', getCardsController)
+    cardsRouter.get('/', getCardController)
 
     export { cardsRouter }

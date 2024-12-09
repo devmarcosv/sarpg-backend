@@ -8,7 +8,7 @@ export async function createCardController(
   response: Response,
 ): Promise<Response> {
   const createCardSchema = z.object({
-    nome: z.string(),
+    name: z.string(),
     raca: z.string(),
     classe: z.string(),
     nivel: z.number(),
@@ -23,7 +23,7 @@ export async function createCardController(
     createCardSchema,
     request.body,
   )
-
+  console.log(payload)
   const service = new CreateCardService()
 
   const card = await service.execute(payload)

@@ -27,7 +27,7 @@ class CreateCardService {
   public async execute(data: IRequest): Promise<Card> {
 
     const user =  await this.repository.create(data);
-    console.log(user)
+
     return user;
   }
 }

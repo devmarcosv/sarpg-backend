@@ -33,7 +33,6 @@ export class Session implements SessionModel {
   @UpdateDateColumn({ name: 'updated_at' })
   updated_at: Date
 
-  @OneToMany(() => Character , (character) => character.id, { cascade: true })
-  @JoinColumn({ name: 'id' }) // Certifique-se do nome correto
+  @OneToMany(() => Character , (character) => character.session, { cascade: true })
   characters: Character;
 }

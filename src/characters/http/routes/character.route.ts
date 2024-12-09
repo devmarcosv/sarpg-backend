@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { createCharacterController } from '../controllers/create-character.controller'
+import { getCharacterController } from '../controllers/get-character.controller'
 
 
 
@@ -7,6 +8,8 @@ import { createCharacterController } from '../controllers/create-character.contr
 
 
     charactersRouter.post('/', createCharacterController)
+    charactersRouter.get('/', getCharacterController)
+    
 
    
 

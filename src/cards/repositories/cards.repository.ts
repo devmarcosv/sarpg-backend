@@ -18,13 +18,13 @@ export class CardsRepository {
   }
 
   // Método para buscar usuários paginados
-  public async index(page: number, limit: number): Promise<{ users: Card[]; total: number }> {
-    const [users, total] = await this.repository.findAndCount({
+  public async index(page: number, limit: number): Promise<{ cards: Card[]; total: number }> {
+    const [cards, total] = await this.repository.findAndCount({
         skip: (page - 1) * limit,
         take: limit,
     });
 
-    return { users, total };
+    return { cards, total };
 }
 
 // Método para buscar todos os usuários

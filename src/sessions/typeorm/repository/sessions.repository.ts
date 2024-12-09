@@ -18,18 +18,20 @@ export class SessionsRepository {
   }
 
   // Método para buscar usuários paginados
-  public async index(page: number, limit: number): Promise<{ users: Session[]; total: number }> {
-    const [users, total] = await this.repository.findAndCount({
+  public async index(page: number, limit: number): Promise<{ sessions: Session[]; total: number }> {
+    const [sessions, total] = await this.repository.findAndCount({
         skip: (page - 1) * limit,
         take: limit,
+        relations: ['characters'], // Inclui os dados relacionados de Character
     });
 
-    return { users, total };
+    return { sessions, total };
 }
 
 // Método para buscar todos os usuários
 public async findAll(): Promise<Session[]> {
-    return this.repository.find();
+    return this.repository.find({relations: ['characters']
+    });
 }
 
   async findById(id?: string): Promise<Session | null> {

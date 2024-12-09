@@ -18,18 +18,19 @@ export class CharacterRepository {
   }
 
   // Método para buscar usuários paginados
-  public async index(page: number, limit: number): Promise<{ users: Character[]; total: number }> {
-    const [users, total] = await this.repository.findAndCount({
+  public async index(page: number, limit: number): Promise<{ characters: Character[]; total: number }> {
+    const [characters, total] = await this.repository.findAndCount({
         skip: (page - 1) * limit,
         take: limit,
+        relations: ['session'],
     });
 
-    return { users, total };
+    return { characters, total };
 }
 
 // Método para buscar todos os usuários
 public async findAll(): Promise<Character[]> {
-    return this.repository.find();
+    return this.repository.find({relations: ["session"]});
 }
 
   async findById(id?: string): Promise<Character | null> {

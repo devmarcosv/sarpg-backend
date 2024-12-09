@@ -8,13 +8,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 
-@Entity('cards')
+@Entity('fichas')
 export class Card implements CardModel {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
   @Column()
-  nome: string
+  name: string
 
   @Column()
   raca: string

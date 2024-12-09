@@ -1,5 +1,5 @@
 export interface CardModel {
-    nome: string
+    name: string
     raca: string
     classe: string
     nivel: string
