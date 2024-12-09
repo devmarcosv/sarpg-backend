@@ -12,7 +12,7 @@ export async function createCharacterController(
     session_id: z.string(),
     classe: z.string(),
     raca: z.string(),
-    pontos_de_vida: z.number()
+    pontos_de_vida: z.number().optional()
    })
 
    const data = dataValidation(createCharacterSchema, request.body)
